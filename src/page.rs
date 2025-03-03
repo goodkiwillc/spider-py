@@ -1,10 +1,13 @@
 use pyo3::{pyclass, pymethods, PyRef, PyRefMut};
 use spider::{compact_str::CompactString, hashbrown::HashSet, reqwest::header::HeaderMap};
 use std::collections::HashMap;
+#[pyo3_stub_gen::derive::gen_stub_pyfunction]
+
 
 /// a simple page object
 #[derive(Default)]
 #[pyclass]
+#[pyo3_stub_gen::derive::gen_stub]
 pub struct Page {
   /// the page object from spider
   inner: Option<spider::page::Page>,
@@ -48,6 +51,7 @@ impl Page {
   /// A new page to collect.
   #[new]
   #[pyo3(signature = (url, subdomains=None, tld=None, headers=None))]
+  #[pyo3_stub_gen::derive::gen_stub_return_type("Page")]
   pub fn new(
     url: String,
     subdomains: Option<bool>,
@@ -64,6 +68,7 @@ impl Page {
   }
 
   /// get the page content
+  #[pyo3_stub_gen::derive::gen_stub_return_type("Page")]
   pub fn fetch(mut slf: PyRefMut<'_, Self>) -> PyRefMut<'_, Self> {
     use spider::{
       lazy_static::lazy_static, reqwest::Client, reqwest_middleware::ClientWithMiddleware,
@@ -96,6 +101,7 @@ impl Page {
   }
 
   /// all links on the page
+  #[pyo3_stub_gen::derive::gen_stub_return_type("list[str]")]
   pub fn get_links(slf: PyRef<'_, Self>) -> Vec<String> {
     match &slf.selectors {
       Some(selectors) => match &slf.inner {
@@ -119,6 +125,7 @@ impl Page {
   }
 
   /// get the html for the page
+  #[pyo3_stub_gen::derive::gen_stub_return_type("str")]
   pub fn get_html(&self) -> String {
     match &self.inner {
       Some(inner) => inner.get_html(),
@@ -127,6 +134,7 @@ impl Page {
   }
 
   /// get the bytes for the page
+  #[pyo3_stub_gen::derive::gen_stub_return_type("bytes")]
   pub fn get_bytes(&self) -> &[u8] {
     match &self.inner {
       Some(inner) => inner.get_html_bytes_u8(),

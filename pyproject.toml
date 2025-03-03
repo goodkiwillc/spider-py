@@ -1,3 +1,13 @@
+[project]
+name = "spider_rs"
+requires-python = ">=3.7"
+version = "0.0.57"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
 [build-system]
 requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
@@ -5,11 +15,4 @@ build-backend = "maturin"
 [tool.maturin]
 features = ["pyo3/extension-module"]
 
-[project]
-name = "spider_rs"
-requires-python = ">=3.7"
-classifiers = [
-    "Programming Language :: Rust",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-]
+    
